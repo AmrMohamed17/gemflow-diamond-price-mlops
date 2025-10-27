@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: DiamondPricePred
+Version: 0.1
+Requires-Dist: Pandas
+Requires-Dist: Numpy
+Requires-Dist: scikit-learn

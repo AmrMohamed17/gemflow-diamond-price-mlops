@@ -1,0 +1,4 @@
+[project]
+name = "DiamondPricePred"
+version = "0.1"
+dependencies = ['Pandas', 'Numpy', 'scikit-learn']
