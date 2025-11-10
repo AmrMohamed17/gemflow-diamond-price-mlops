@@ -11,7 +11,7 @@ class DataIngestion:
   def __init__(self) -> None:
     self.data_config = DataIngestionConfig()
 
-  def initiate_data_ingestion(self) -> None:
+  def initiate_data_ingestion(self):
     try:
       print("Data Ingestion Started")
       data = pd.read_csv(self.data_config.data_path)

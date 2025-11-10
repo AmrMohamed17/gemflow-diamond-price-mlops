@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Prediction Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #a0aec0;
+        }
+
+        .submit-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(-1px);
+        }
+
+        .section-title {
+            color: #4a5568;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('home_page') }}" class="back-link">← Back to Home</a>
+        
+        <div class="header">
+            <h1>💎 Diamond Price Prediction</h1>
+            <p>Enter the diamond specifications to get an estimated price</p>
+        </div>
+
+        <form action="{{url_for('predict_datapoint')}}" method="POST">
+            <div class="section-title">Physical Measurements</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="carat">Carat</label>
+                    <input type="text" id="carat" name="carat" placeholder="e.g., 0.50" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="depth">Depth (%)</label>
+                    <input type="text" id="depth" name="depth" placeholder="e.g., 61.5" required>
+                </div>
+
+                <div class="form-group">  
+                    <label for="table">Table (%)</label>
+                    <input type="text" id="table" name="table" placeholder="e.g., 57.0" required>
+                </div>
+            </div>
+
+            <div class="section-title">Dimensions (mm)</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="x">Length (x)</label>
+                    <input type="text" id="x" name="x" placeholder="e.g., 5.15" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="y">Width (y)</label>
+                    <input type="text" id="y" name="y" placeholder="e.g., 5.18" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="z">Depth (z)</label>
+                    <input type="text" id="z" name="z" placeholder="e.g., 3.17" required>
+                </div>
+            </div>
+
+            <div class="section-title">Quality Characteristics</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="cut">Cut Quality</label>
+                    <select id="cut" name="cut" required>
+                        <option value="">Select Cut</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Good">Good</option>
+                        <option value="Very Good">Very Good</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Ideal">Ideal</option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="color">Color Grade</label>
+                    <select id="color" name="color" required>
+                        <option value="">Select Color</option>
+                        <option value="D">D (Colorless)</option>
+                        <option value="E">E (Colorless)</option>
+                        <option value="F">F (Colorless)</option>
+                        <option value="G">G (Near Colorless)</option>
+                        <option value="H">H (Near Colorless)</option>
+                        <option value="I">I (Near Colorless)</option>
+                        <option value="J">J (Near Colorless)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="clarity">Clarity Grade</label>
+                    <select id="clarity" name="clarity" required>
+                        <option value="">Select Clarity</option>
+                        <option value="I1">I1 (Included)</option>
+                        <option value="SI2">SI2 (Slightly Included)</option>
+                        <option value="SI1">SI1 (Slightly Included)</option>
+                        <option value="VS2">VS2 (Very Slightly Included)</option>
+                        <option value="VS1">VS1 (Very Slightly Included)</option>
+                        <option value="VVS2">VVS2 (Very Very Slightly Included)</option>
+                        <option value="VVS1">VVS1 (Very Very Slightly Included)</option>
+                        <option value="IF">IF (Internally Flawless)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="submit-container">
+                <input type="submit" value="Predict Price">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

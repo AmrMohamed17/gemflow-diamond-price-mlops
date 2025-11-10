@@ -24,7 +24,7 @@ class ModelTrainer:
       models = {
         'LinearRegression': LinearRegression(),
         'DecisionTreeRegressor': DecisionTreeRegressor(),
-        'RandomForestRegressor': RandomForestRegressor(),
+        # 'RandomForestRegressor': RandomForestRegressor(),
         'XGBRegressor': XGBRegressor()
       }
 

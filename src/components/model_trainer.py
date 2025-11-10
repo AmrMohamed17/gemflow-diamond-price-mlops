@@ -36,10 +36,5 @@ class ModelTrainer:
 
       print(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
 
-      save_object(self.config.model_path, models[best_model_name])
-      test = pd.concat([X_test, y_test], axis=1)
-      test.to_csv(self.config.test_path, index=False)
-
-
     except Exception as e:
       print(e)
