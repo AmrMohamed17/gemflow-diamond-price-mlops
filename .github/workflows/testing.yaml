@@ -15,7 +15,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: [3.9, 3.10, 3.11]
-        tox-env: [py39, py310, py311]
+        # tox-env: [py39, py310, py311]
 
     steps:
       - uses: actions/checkout@v3
@@ -31,4 +31,4 @@ jobs:
           pip install tox
 
       - name: Run tox
-        run: tox -e ${{ matrix.tox-env }}
+        run: tox 
