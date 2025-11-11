@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: DiamondPricePred
+Version: 0.1.0
+Summary: An DiamondPricePred project using tox and GitHub Actions
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Requires-Dist: flask
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: tox; extra == "dev"

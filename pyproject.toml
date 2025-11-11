@@ -9,6 +9,9 @@ version = "0.1.0"
 description = "An DiamondPricePred project using tox and GitHub Actions"
 dependencies = ['pandas', 'numpy', 'scikit-learn', 'flask']
 
+[tool.setuptools]
+packages = ["src"]
+
 [project.optional-dependencies]
 dev = [
     "pytest",

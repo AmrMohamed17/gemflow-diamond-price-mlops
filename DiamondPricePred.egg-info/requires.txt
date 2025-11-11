@@ -1,0 +1,10 @@
+pandas
+numpy
+scikit-learn
+flask
+
+[dev]
+pytest
+flake8
+mypy
+tox
