@@ -4,15 +4,11 @@ from src.components.model_trainer import ModelTrainer
 from src.utils.utils import load_object
 
 
-def test_model_trainer_creates_model_file(data_transform):
+def test_model_trainer_creates_model_file(model_trainer):
     """Test that model trainer creates a model file"""
-    X_train, X_test, y_train, y_test = data_transform
+    model = model_trainer
     
-    trainer = ModelTrainer()
-    trainer.initiate_model_trainer(X_train, X_test, y_train, y_test,test=True)
-    
-    # Check if model file is created
-    assert os.path.exists(trainer.config.model_path)
+    assert os.path.exists(model)
     
 
 
