@@ -1,5 +1,4 @@
 import os
-import numpy as np
 import pandas as pd
 from dataclasses import dataclass
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
@@ -51,7 +50,7 @@ class DataTransform:
     return preprocessor
 
 
-  def initiate_data_transform(self, train_data, test_data):
+  def initiate_data_transform(self, train_data, test_data, test=False):
     try:
       print("Data transform Started")
       prep_obj = self.get_column_transformer()
@@ -67,9 +66,14 @@ class DataTransform:
       # test_processed = pd.concat([X_test, y_test], axis=1)
 
       print(X_train.shape)
-      print(X_train.head())
+      print(X_train.head(1))
+      print(X_test.head(1))
+      print(y_train.head(1))
+      print(y_test.head(1))
+      
 
-      save_object(self.DataConfig.file_path, prep_obj)
+      if not test:
+        save_object(self.DataConfig.file_path, prep_obj)
 
       return X_train, X_test, y_train, y_test
 

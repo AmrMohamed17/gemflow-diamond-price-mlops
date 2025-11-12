@@ -16,7 +16,7 @@ class DataIngestion:
       print("Data Ingestion Started")
       data = pd.read_csv(self.data_config.data_path)
       data = data.drop(columns=['id'])
-      train, test = train_test_split(data, test_size=0.2)
+      train, test = train_test_split(data, test_size=0.25)
       return train, test
 
     except Exception as e:

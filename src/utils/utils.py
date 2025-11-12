@@ -24,6 +24,7 @@ def evaluate_models(X_train, X_test, y_train, y_test,models):
       print(f"started {model_name}")
       model.fit(X_train, y_train)
       y_pred = model.predict(X_test)
+      # print(f"predict for {model_name}: {y_pred[0:5]}")
       r2 = r2_score(y_test, y_pred)
       report[model_name] = r2
       print(f"{model_name} Ended Successfully")
