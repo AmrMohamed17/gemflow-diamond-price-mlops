@@ -4,11 +4,11 @@ from src.components.model_trainer import ModelTrainer
 from src.utils.utils import load_object
 
 
-def test_model_trainer_creates_model_file(model_trainer):
-    """Test that model trainer creates a model file"""
-    model = model_trainer
+# def test_model_trainer_creates_model_file(model_trainer):
+#     """Test that model trainer creates a model file"""
+#     model = model_trainer
     
-    assert os.path.exists(model)
+#     assert os.path.exists(model)
     
 
 
@@ -33,14 +33,14 @@ def test_model_can_be_loaded(data_transform):
     assert all(pred > 0 for pred in predictions)  # Prices should be positive
 
 
-# def test_model_output_shape(data_transform):
-#     """Test that model predictions have correct shape"""
-#     X_train, X_test, y_train, y_test = data_transform
+def test_model_output_shape(data_transform):
+    """Test that model predictions have correct shape"""
+    X_train, X_test, y_train, y_test = data_transform
     
-#     trainer = ModelTrainer()
-#     trainer.initiate_model_trainer(X_train, X_test, y_train, y_test, test=True)
+    trainer = ModelTrainer()
+    trainer.initiate_model_trainer(X_train, X_test, y_train, y_test, test=True)
     
-#     model = load_object(trainer.config.model_path)
-#     predictions = model.predict(X_test)
+    model = load_object(trainer.config.model_path)
+    predictions = model.predict(X_test)
     
-#     assert predictions.shape[0] == X_test.shape[0]
+    assert predictions.shape[0] == X_test.shape[0]
