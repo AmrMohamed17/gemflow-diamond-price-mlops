@@ -1,6 +1,3 @@
-from src.components.data_transformation import DataTransform
-import pandas as pd
-
 def test_data_transformation(data_transform):
     X_train, X_test, y_train, y_test = data_transform
     

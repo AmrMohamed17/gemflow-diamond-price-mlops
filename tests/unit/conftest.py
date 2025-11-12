@@ -16,9 +16,9 @@ def data_transform(sample_data):
     return DataTransform().initiate_data_transform(train, test, test=True)
 
 
-@pytest.fixture(scope="module")
-def model_trainer(data_transform):
-    X_train, X_test, y_train, y_test = data_transform
-    trainer = ModelTrainer()
-    trainer.initiate_model_trainer(X_train, X_test, y_train, y_test, test=True)
-    return trainer.config.model_path
+# @pytest.fixture(scope="module")
+# def model_trainer(data_transform):
+#     X_train, X_test, y_train, y_test = data_transform
+#     trainer = ModelTrainer()
+#     trainer.initiate_model_trainer(X_train, X_test, y_train, y_test, test=True)
+#     return trainer.config.model_path

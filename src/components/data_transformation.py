@@ -52,12 +52,20 @@ class DataTransform:
 
   def initiate_data_transform(self, train_data, test_data, test=False):
     try:
+
+      cols = ['cut', 'color', 'clarity', 'carat', 'depth', 'table', 'x', 'y', 'z']
+      print(train_data.columns)
+      for col in cols:
+        if col not in train_data.columns:
+          raise Exception
+
       print("Data transform Started")
       prep_obj = self.get_column_transformer()
 
       target_col = 'price'
       y_train = train_data.pop(target_col)
       y_test = test_data.pop(target_col)
+
 
       X_train = pd.DataFrame(prep_obj.fit_transform(train_data), columns=prep_obj.get_feature_names_out())
       X_test = pd.DataFrame(prep_obj.transform(test_data), columns=prep_obj.get_feature_names_out())

@@ -1,4 +1,3 @@
-
 def test_data_ingestion(sample_data):
     train, test = sample_data
 
