@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 name = "DiamondPricePred"
 version = "0.1.0"
 description = "An DiamondPricePred project using tox and GitHub Actions"
-dependencies = ['pandas', 'numpy', 'scikit-learn', 'flask', 'xgboost']
+dependencies = ['pandas', 'numpy', 'scikit-learn==1.6.1', 'flask', 'xgboost']
 
 [tool.setuptools]
 packages = ["src"]
