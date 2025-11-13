@@ -1,0 +1,4 @@
+[core]
+    remote = origin
+['remote "origin"']
+    url = https://dagshub.com/AmrMohamed17/gemflow-diamond-price-mlops.dvc

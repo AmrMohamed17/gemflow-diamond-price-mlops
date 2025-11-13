@@ -7,6 +7,9 @@ Requires-Dist: numpy
 Requires-Dist: scikit-learn==1.6.1
 Requires-Dist: flask
 Requires-Dist: xgboost
+Requires-Dist: mlflow
+Requires-Dist: dagshub
+Requires-Dist: dvc[s3]
 Provides-Extra: dev
 Requires-Dist: pytest; extra == "dev"
 Requires-Dist: flake8; extra == "dev"

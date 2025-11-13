@@ -3,6 +3,9 @@ numpy
 scikit-learn==1.6.1
 flask
 xgboost
+mlflow
+dagshub
+dvc[s3]
 
 [dev]
 pytest

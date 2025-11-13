@@ -6,6 +6,8 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression
 from xgboost import XGBRegressor
 from src.utils.utils import save_object
+import mlflow
+import dagshub
 
 @dataclass
 class ModelTrainerConfig:
@@ -20,9 +22,9 @@ class ModelTrainer:
     print("Model Trainer Started")
     try:
       models = {
-        'LinearRegression': LinearRegression(),
-        'DecisionTreeRegressor': DecisionTreeRegressor(),
-        'XGBRegressor': XGBRegressor()
+        # 'LinearRegression': LinearRegression(),
+        # 'DecisionTreeRegressor': DecisionTreeRegressor(),
+        'XGBRegressor': XGBRegressor(n_estimators=300, learning_rate=0.05, max_depth=4)
       }
 
       model_report = evaluate_models(X_train, X_test, y_train, y_test,models)
@@ -34,6 +36,23 @@ class ModelTrainer:
       print(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
 
       if not test:
+        dagshub.init(repo_owner="AmrMohamed17", repo_name='gemflow-diamond-price-mlops', mlflow=True)
+        mlflow.set_tracking_uri("https://dagshub.com/AmrMohamed17/gemflow-diamond-price-mlops.mlflow")
+        mlflow.set_experiment("DiamondPricePred")
+        with mlflow.start_run():
+          mlflow.log_params({
+            "n_estimators": 300,
+            "learning_rate": 0.05, 
+            "max_depth" : 4
+          })
+
+          # best_model = models[best_model_name]
+          # best_model.fit(X_train, y_train)
+
+          mlflow.log_metric("r2_score", best_model_score)
+
+          # mlflow.xgboost.log_model(models["XGBRegressor"], "model")
+
         save_object(
           file_path=self.config.model_path,
           obj=models[best_model_name]

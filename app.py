@@ -34,10 +34,8 @@ def predict_datapoint():
         return render_template('result.html', final_result=result)
     
     except ValueError as e:
-        print("here")
         return render_template('form.html', error="Please enter valid numeric values for all fields.")
     except Exception as e:
-        print(f"or here {e}")
         return render_template('form.html', error=f"An error occurred: {str(e)}")
 
 if __name__ == "__main__":
