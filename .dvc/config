@@ -1,4 +1,5 @@
 [core]
-    remote = origin
-['remote "origin"']
-    url = https://dagshub.com/AmrMohamed17/gemflow-diamond-price-mlops.dvc
+    remote = s3remote
+['remote "s3remote"']
+    url = s3://diamond-price-mlops/dvc-storage
+    region = us-east-1
