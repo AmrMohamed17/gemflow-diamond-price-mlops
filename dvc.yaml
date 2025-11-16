@@ -1,0 +1,35 @@
+stages:
+  data_ingestion:
+    cmd: python -c "from src.components.data_ingestion import DataIngestion; di = DataIngestion(); di.initiate_data_ingestion()"
+    deps:
+      - src/components/data_ingestion.py
+      - artifacts/data.csv
+    params:
+      - data_ingestion.test_size
+    outs:
+      - artifacts/train_data.csv
+      - artifacts/test_data.csv
+
+  data_transformation:
+    cmd: python -c "from src.components.data_transformation import DataTransform; from src.components.data_ingestion import DataIngestion; import pandas as pd; train=pd.read_csv('artifacts/train_data.csv'); test=pd.read_csv('artifacts/test_data.csv'); dt=DataTransform(); dt.initiate_data_transform(train, test)"
+    deps:
+      - src/components/data_transformation.py
+      - artifacts/train_data.csv
+      - artifacts/test_data.csv
+    outs:
+      - artifacts/preprocessor.pkl
+
+  model_training:
+    cmd: python src/pipeline/training_pipeline.py
+    deps:
+      - src/components/model_trainer.py
+      - artifacts/preprocessor.pkl
+    params:
+      - model.n_estimators
+      - model.learning_rate
+      - model.max_depth
+    outs:
+      - artifacts/model.pkl
+    metrics:
+      - artifacts/metrics.json:
+          cache: false
