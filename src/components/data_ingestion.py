@@ -18,8 +18,6 @@ class DataIngestion:
             data = data.drop(columns=['id'])
             train, test = train_test_split(data, test_size=0.25, random_state=42)
             
-            # Save intermediate files for DVC
-            os.makedirs("artifacts", exist_ok=True)
             
             return train, test
         except Exception as e:
