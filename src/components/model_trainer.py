@@ -10,7 +10,6 @@ from sklearn.linear_model import LinearRegression
 from xgboost import XGBRegressor
 from src.utils.utils import save_object
 import mlflow
-import yaml
 
 
 @dataclass
@@ -25,16 +24,13 @@ class ModelTrainer:
   def initiate_model_trainer(self, X_train, X_test, y_train, y_test, test=False):
     print("Model Trainer Started")
     try:
-      with open('params.yaml', 'r') as f:
-          params = yaml.safe_load(f)
 
-      model_params = params['model']    
       models = {
         # 'LinearRegression': LinearRegression(),
         # 'DecisionTreeRegressor': DecisionTreeRegressor(),
-        'XGBRegressor': XGBRegressor(n_estimators= model_params['n_estimators'], 
-                                    learning_rate= model_params['learning_rate'], 
-                                    max_depth = model_params['max_depth'])
+        'XGBRegressor': XGBRegressor(n_estimators= 300, 
+                                    learning_rate= 0.05, 
+                                    max_depth = 4)
       }
 
       model_report = evaluate_models(X_train, X_test, y_train, y_test,models)
